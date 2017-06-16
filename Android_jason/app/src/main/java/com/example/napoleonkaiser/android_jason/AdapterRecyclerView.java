@@ -17,7 +17,7 @@ import java.util.List;
  * Created by napoleonkaiser on 13/06/2017.
  */
 
-class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerView.ViewHolder>{
+class AdapterRecyclerView extends RecyclerView.Adapter<AdapterRecyclerView.ViewHolder> {
     private List<String> mList = new ArrayList<>();
 
     AdapterRecyclerView(List<String> list) {

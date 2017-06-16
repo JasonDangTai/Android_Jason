@@ -1,6 +1,7 @@
 package com.example.napoleonkaiser.android_jason;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,19 +22,19 @@ import java.util.Random;
  * Created by napoleonkaiser on 14/06/2017.
  */
 
-public class FmExlore extends Fragment {
+public class FmExlore extends Fragment implements AdapterRecyclerViewExplore.OnClickItemListener {
     private View rootView;
-
+    private TextView tvMore;
     private List<String> mList = new ArrayList<>();
     private RecyclerView mRecyclerView;
+    private FragmentTransaction fragmentTransaction;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
     private void setUpView() {
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view_explore);
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
     }
     private void fakeData() {
         Random random = new Random();
@@ -44,12 +47,14 @@ public class FmExlore extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         AdapterRecyclerViewExplore listAdapter = new AdapterRecyclerViewExplore(mList);
         mRecyclerView.setAdapter(listAdapter);
+        listAdapter.setOnClickItemListener(this);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fm_explore, container, false);
+
         return rootView;
     }
 
@@ -61,5 +66,17 @@ public class FmExlore extends Fragment {
         setUpRecyclerView();
         MainActivity activity = (MainActivity) getActivity();
         activity.getToolbar().setTitle(R.string.app_name_explore);
+
+
+
+    }
+
+    @Override
+    public void onClick(Integer pos) {
+//        Toast.makeText(rootView.getContext(),mList.get(pos),Toast.LENGTH_SHORT).show();
+        FmDeliveries fmDeliveries =new FmDeliveries();
+        fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, fmDeliveries);
+        fragmentTransaction.commit();
     }
 }

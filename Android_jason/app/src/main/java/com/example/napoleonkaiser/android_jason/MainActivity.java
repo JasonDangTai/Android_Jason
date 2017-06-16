@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,11 +20,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.util.List;
+
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, FmDeliveries.CommunicationFragment , View.OnClickListener {
 
     private ActionBarDrawerToggle toggle;
     private FmDeliveries fmDeliveries;
@@ -31,9 +37,11 @@ public class MainActivity extends AppCompatActivity
     private FrameLayout frameLayout;
     private FragmentTransaction fragmentTransaction;
     private Toolbar toolbar;
+    TextView tvMore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -44,10 +52,12 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
             }
         });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
@@ -56,26 +66,28 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationViewRight = (NavigationView) findViewById(R.id.nav_view_right);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationViewRight.setNavigationItemSelectedListener(this);
         navigationView.setNavigationItemSelectedListener(this);
-
+        NavigationView navigationViewRight = (NavigationView) findViewById(R.id.nav_view_right);
+        navigationViewRight.setNavigationItemSelectedListener(this);
         fmDeliveries = new FmDeliveries();
         fmExlore = new FmExlore();
         frameLayout = (FrameLayout) findViewById(R.id.frameLayout);
 
         fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout, fmDeliveries);
-        fragmentTransaction.commit();
+        fragmentTransaction.commitAllowingStateLoss();
 
     }
+
+
+
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         toggle.syncState();
- }
+    }
 
     @Override
     public void onBackPressed() {
@@ -107,6 +119,8 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.openDrawer(GravityCompat.END);
             return true;
         }
 
@@ -120,6 +134,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+
         int id = item.getItemId();
 
         if (id == R.id.nav_deliveries) {
@@ -145,5 +160,24 @@ public class MainActivity extends AppCompatActivity
 
     public Toolbar getToolbar(){
         return toolbar;
+    }
+
+    @Override
+    public void GuidulieuFramentExplore(List<String> dulieu) {
+        fmExlore = new FmExlore();
+
+        Bundle bundle = new Bundle();
+
+        fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, fmDeliveries);
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(this, "asdkf", Toast.LENGTH_SHORT).show();
+        fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, fmExlore);
+        fragmentTransaction.commit();
     }
 }

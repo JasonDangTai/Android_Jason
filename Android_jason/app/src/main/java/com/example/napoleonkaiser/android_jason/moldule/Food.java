@@ -1,10 +1,12 @@
 package com.example.napoleonkaiser.android_jason.moldule;
 
+import java.io.Serializable;
+
 /**
  * Created by napoleonkaiser on 13/06/2017.
  */
 
-public class Food {
+public class Food implements Serializable{
     private String name;
     private String img;
 

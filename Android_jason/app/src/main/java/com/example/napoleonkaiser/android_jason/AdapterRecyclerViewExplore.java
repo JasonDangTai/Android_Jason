@@ -1,11 +1,13 @@
 package com.example.napoleonkaiser.android_jason;
 
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -16,8 +18,14 @@ import java.util.List;
  * Created by napoleonkaiser on 13/06/2017.
  */
 
-class AdapterRecyclerViewExplore extends RecyclerView.Adapter<AdapterRecyclerViewExplore.ViewHolder>{
+class AdapterRecyclerViewExplore extends RecyclerView.Adapter<AdapterRecyclerViewExplore.ViewHolder> {
     private List<String> mList = new ArrayList<>();
+    private  OnClickItemListener onClickItemListener;
+
+    public void setOnClickItemListener(OnClickItemListener onClickItemListener){
+        this.onClickItemListener = onClickItemListener;
+    }
+
     AdapterRecyclerViewExplore(List<String> list) {
         if (list != null) mList.addAll(list);
     }
@@ -38,8 +46,11 @@ class AdapterRecyclerViewExplore extends RecyclerView.Adapter<AdapterRecyclerVie
             img2 = (ImageView) v.findViewById(R.id.image2);
             Glide.with(v).load("https://upload.wikimedia.org/wikipedia/commons/2/2e/Fast_food_meal.jpg").into(img1);
             Glide.with(v).load("https://static.independent.co.uk/s3fs-public/styles/article_small/public/thumbnails/image/2016/12/19/18/sush0istock-gkrphoto.jpg").into(img2);
+
+
         }
     }
+
 
     @Override
     public AdapterRecyclerViewExplore.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -49,16 +60,34 @@ class AdapterRecyclerViewExplore extends RecyclerView.Adapter<AdapterRecyclerVie
     }
 
     @Override
-    public void onBindViewHolder(AdapterRecyclerViewExplore.ViewHolder holder, int position) {
+    public void onBindViewHolder(AdapterRecyclerViewExplore.ViewHolder holder, final int position) {
         holder.textView_1.setText(mList.get(position));
         holder.textView_3.setText(mList.get(position));
         holder.textView_4.setText(mList.get(position));
         holder.textView_5.setText(mList.get(position));
         holder.textView_6.setText(mList.get(position));
+
+        holder.textView_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(v.getContext(),mList.get(position),Toast.LENGTH_SHORT).show();
+                if(onClickItemListener != null){
+                    onClickItemListener.onClick(position);
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
+        if (mList == null || mList.size() == 0) {
+            return 0;
+        }
         return mList.size();
+    }
+
+    public interface OnClickItemListener {
+        void onClick(Integer pos);
+
     }
 }

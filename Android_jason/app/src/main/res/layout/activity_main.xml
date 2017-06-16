@@ -30,7 +30,7 @@
         android:layout_gravity="end"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main_right"
-        
+
         />
 
 
