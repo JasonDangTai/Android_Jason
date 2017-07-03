@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/weather_beautiful_live"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="Thành phố Hồ Chí Minh"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:text="T.4, 28 Tháng 6"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.00"
+            android:src="@drawable/cloud" />
+
+        <TextView
+            android:id="@+id/tvTemperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="28°C"
+            android:textColor="#ffffff"
+            android:textSize="40sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTemMax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="32°C"
+                android:textColor="#ffffff"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tvTemMin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25°C"
+                android:textColor="#ffffff"
+                android:textSize="14dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvShortPhrase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="ít mây"
+        android:textColor="#ffffff"
+        android:textSize="15sp"
+        android:layout_marginBottom="40dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/temperature" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RealFeel"
+                    android:textColor="#ffffff"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tvRealFeel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="35°"
+                    android:textColor="#ffffff"
+                    android:textSize="17sp" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/rainy_weather"
+                android:layout_marginRight="5dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Khả năng mưa"
+                    android:textColor="#ffffff"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tvRainProbability"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="34%"
+                    android:textColor="#ffffff"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sun" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chỉ số UV"
+                    android:textColor="#ffffff"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tvUVIndex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thấp"
+                    android:textColor="#ffffff"
+                    android:textSize="17sp" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/partly_cloudy_day"
+                android:layout_marginRight="5dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hoàng hôn"
+                    android:textColor="#ffffff"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18.19"
+                    android:textColor="#ffffff"
+                    android:textSize="17sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
